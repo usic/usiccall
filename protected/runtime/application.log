@@ -1,0 +1,90 @@
+2013/02/28 18:51:09 [error] [exception.CException] exception 'CException' with message 'CAssetManager.basePath "/var/www/catalog/assets" is invalid. Please make sure the directory exists and is writable by the Web server process.' in /var/www/framework/web/CAssetManager.php:138
+Stack trace:
+#0 /var/www/framework/web/CAssetManager.php(123): CAssetManager->setBasePath('/var/www/catalo...')
+#1 /var/www/framework/web/CAssetManager.php(217): CAssetManager->getBasePath()
+#2 /var/www/framework/web/CClientScript.php(462): CAssetManager->publish('/var/www/framew...')
+#3 /var/www/framework/web/CClientScript.php(499): CClientScript->getCoreScriptUrl()
+#4 /var/www/framework/web/CClientScript.php(315): CClientScript->getPackageBaseUrl('jquery')
+#5 /var/www/framework/web/CClientScript.php(208): CClientScript->renderCoreScripts()
+#6 /var/www/framework/web/CController.php(351): CClientScript->render('<!DOCTYPE html ...')
+#7 /var/www/framework/web/CController.php(788): CController->processOutput('<!DOCTYPE html ...')
+#8 /var/www/catalog/protected/controllers/SiteController.php(72): CController->render('contact', Array)
+#9 /var/www/framework/web/actions/CInlineAction.php(49): SiteController->actionContact()
+#10 /var/www/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /var/www/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#12 /var/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /var/www/framework/web/CWebApplication.php(282): CController->run('contact')
+#14 /var/www/framework/web/CWebApplication.php(141): CWebApplication->runController('site/contact')
+#15 /var/www/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#16 /var/www/catalog/index.php(13): CApplication->run()
+#17 {main}
+REQUEST_URI=/catalog/index.php?r=site/contact
+HTTP_REFERER=http://localhost/catalog/index.php?r=site/page&view=about
+---
+2013/02/28 19:55:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "gii".' in /var/www/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/framework/web/CWebApplication.php(141): CWebApplication->runController('gii')
+#1 /var/www/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/catalog/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/catalog/index.php?r=gii
+---
+2013/02/28 21:05:53 [error] [exception.CException] exception 'CException' with message 'FilesController cannot find the requested view "index".' in /var/www/framework/web/CController.php:878
+Stack trace:
+#0 /var/www/framework/web/CController.php(782): CController->renderPartial('index', Array, true)
+#1 /var/www/catalog/protected/controllers/FilesController.php(128): CController->render('index', Array)
+#2 /var/www/framework/web/actions/CInlineAction.php(49): FilesController->actionIndex()
+#3 /var/www/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /var/www/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 /var/www/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /var/www/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 /var/www/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 /var/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 /var/www/framework/web/CController.php(291): CFilterChain->run()
+#10 /var/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /var/www/framework/web/CWebApplication.php(282): CController->run('index')
+#12 /var/www/framework/web/CWebApplication.php(141): CWebApplication->runController('files/index')
+#13 /var/www/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#14 /var/www/catalog/index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/catalog/index.php?r=files/index
+HTTP_REFERER=http://localhost/catalog/index.php?r=files/create
+---
+2013/02/28 21:06:01 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /var/www/framework/web/auth/CAccessControlFilter.php:179
+Stack trace:
+#0 /var/www/framework/web/auth/CAccessControlFilter.php(142): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /var/www/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /var/www/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /var/www/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /var/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /var/www/framework/web/CController.php(291): CFilterChain->run()
+#6 /var/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /var/www/framework/web/CWebApplication.php(282): CController->run('admin')
+#8 /var/www/framework/web/CWebApplication.php(141): CWebApplication->runController('files/admin')
+#9 /var/www/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /var/www/catalog/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/catalog/index.php?r=files/admin
+HTTP_REFERER=http://localhost/catalog/index.php?r=files/create
+---
+2013/02/28 22:10:43 [error] [exception.CException] exception 'CException' with message 'FilesController cannot find the requested view "index".' in /var/www/framework/web/CController.php:878
+Stack trace:
+#0 /var/www/framework/web/CController.php(782): CController->renderPartial('index', Array, true)
+#1 /var/www/catalog/protected/controllers/FilesController.php(128): CController->render('index', Array)
+#2 /var/www/framework/web/actions/CInlineAction.php(49): FilesController->actionIndex()
+#3 /var/www/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /var/www/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 /var/www/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /var/www/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 /var/www/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 /var/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 /var/www/framework/web/CController.php(291): CFilterChain->run()
+#10 /var/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /var/www/framework/web/CWebApplication.php(282): CController->run('index')
+#12 /var/www/framework/web/CWebApplication.php(141): CWebApplication->runController('files/index')
+#13 /var/www/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#14 /var/www/catalog/index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/catalog/index.php?r=files/index
+HTTP_REFERER=http://localhost/catalog/index.php?r=files/admin
+---
