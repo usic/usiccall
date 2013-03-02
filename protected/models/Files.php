@@ -96,6 +96,7 @@ class Files extends CActiveRecord
 			'updated' => 'Updated',
 			'author_created' => 'Author Created',
 			'permission' => 'Permission',
+			'tags' => 'Tags'
 		);
 	}
 

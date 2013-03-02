@@ -2,10 +2,7 @@
 /* @var $this FilesController */
 /* @var $model Files */
 
-$this->breadcrumbs=array(
-	'Files'=>array('index'),
-	$model->name,
-);
+
 
 
 ?>

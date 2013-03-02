@@ -28,7 +28,7 @@ class FilesController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('view'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -36,7 +36,7 @@ class FilesController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array('admin','delete', 'index'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -65,11 +65,16 @@ class FilesController extends Controller
 		$model=new Files;
 
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$this->performAjaxValidation($model);
 
 		if(isset($_POST['Files']))
 		{
 			$model->attributes=$_POST['Files'];
+			//$model->real_name=UNIX time + real file name;
+			$model->downloads=0;
+			//$model->size=file size;
+			$model->created=date('G:i d.m.Y');
+			$model->author_created=Yii::app()->user->id;
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}

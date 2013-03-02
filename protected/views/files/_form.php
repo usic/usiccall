@@ -27,6 +27,8 @@
 		<?php echo $form->error($model,'description'); ?>
 	</div>
 
+	
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>
