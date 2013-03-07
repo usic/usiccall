@@ -27,7 +27,23 @@
 		<?php echo $form->error($model,'description'); ?>
 	</div>
 
-	
+	<div class="row">
+		<?php echo $form->labelEx($model,'input_tags'); ?>
+		<?php $this->widget('ext.multicomplete.MultiComplete',array(
+    	'model'=>$model,
+    	'attribute'=>'input_tags',
+    	'splitter'=>',',
+    	'sourceUrl' =>array('files/suggestTags'),
+    	'options'=>array(
+        	'minLength'=>'1',
+    	),
+    	'htmlOptions'=>array(
+        	'maxlength'=>70,
+    	),
+		)); ?>
+		<p class="hint">Please separate different tags with commas.</p>
+		<?php echo $form->error($model,'input_tags'); ?>
+	</div>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

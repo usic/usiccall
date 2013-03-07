@@ -89,4 +89,19 @@ class Tags extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	public function addTags($tags)
+	{
+		foreach($tags as $name)
+		{
+			if(!$this->exists('name_visible=:name',array(':name'=>$name)))
+			{
+				$tag=new Tags;
+				$tag->name_visible=$name;
+				$tag->save();
+			}
+		}
+	}
+
+	
 }

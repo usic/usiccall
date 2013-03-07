@@ -16,6 +16,7 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+
 	),
 
 	'modules'=>array(
@@ -31,6 +32,7 @@ return array(
 
 	// application components
 	'components'=>array(
+		
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,

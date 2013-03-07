@@ -32,6 +32,9 @@ class Files extends CActiveRecord
 	 * @param string $className active record class name.
 	 * @return Files the static model class
 	 */
+
+	public $input_tags;
+
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -53,12 +56,23 @@ class Files extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name', 'length', 'max'=>50),
+			array('name, description', 'required'),
+			array('name, input_tags', 'length', 'max'=>50),
 			array('description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('name, real_name, description, author_created', 'safe', 'on'=>'search'),
 		);
+	}
+
+	public function normalizeTags($attribute,$params)
+	{
+		$this->input_tags=array_unique($this->string2array($this->input_tags));
+	}
+
+	public static function string2array($tags)
+	{
+		return preg_split('/\s*,\s*/',trim($tags),-1,PREG_SPLIT_NO_EMPTY);
 	}
 
 	/**
@@ -96,7 +110,7 @@ class Files extends CActiveRecord
 			'updated' => 'Updated',
 			'author_created' => 'Author Created',
 			'permission' => 'Permission',
-			'tags' => 'Tags'
+			'input_tags' => 'Tags'
 		);
 	}
 
@@ -121,5 +135,22 @@ class Files extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+
+	public function beforeSafe(){
+		
+			if ($this->isNewRecord) {
+				//$model->real_name=real file name;
+				$model->downloads=0;
+				//$model->size=file size;
+				$model->created=date('G:i d.m.Y');
+				$model->author_created=Yii::app()->user->id;
+			}
+		
+	}
+
+	public function afterSafe(){
+		$this->normalizeTags();
+		Tags::addTags($input_tags);
 	}
 }

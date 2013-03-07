@@ -123,3 +123,20 @@ REQUEST_URI=/catalog/index.php?r=files/create
 in /var/www/catalog/protected/views/files/_form.php (38)
 in /var/www/catalog/protected/views/files/create.php (12)
 in /var/www/catalog/protected/controllers/FilesController.php (84)
+2013/03/06 13:06:11 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /var/www/framework/web/CController.php:336
+Stack trace:
+#0 /var/www/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /var/www/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 /var/www/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /var/www/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /var/www/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /var/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /var/www/framework/web/CController.php(291): CFilterChain->run()
+#7 /var/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /var/www/framework/web/CWebApplication.php(282): CController->run('view')
+#9 /var/www/framework/web/CWebApplication.php(141): CWebApplication->runController('files/view')
+#10 /var/www/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#11 /var/www/catalog/index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/catalog/index.php?r=files/view
+---

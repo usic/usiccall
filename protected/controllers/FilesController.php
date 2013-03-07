@@ -32,7 +32,7 @@ class FilesController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','suggestTags'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -64,17 +64,10 @@ class FilesController extends Controller
 	{
 		$model=new Files;
 
-		// Uncomment the following line if AJAX validation is needed
-		$this->performAjaxValidation($model);
 
 		if(isset($_POST['Files']))
 		{
 			$model->attributes=$_POST['Files'];
-			//$model->real_name=UNIX time + real file name;
-			$model->downloads=0;
-			//$model->size=file size;
-			$model->created=date('G:i d.m.Y');
-			$model->author_created=Yii::app()->user->id;
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -82,6 +75,27 @@ class FilesController extends Controller
 		$this->render('create',array(
 			'model'=>$model,
 		));
+	}
+
+	public function actionSuggestTags()
+	{	
+		$term = Yii::app()->getRequest()->getParam('term');
+		if(Yii::app()->request->isAjaxRequest  && $term) {
+        	
+        	$criteria = new CDbCriteria;
+        	$criteria->select = array('name_visible');
+        	$criteria->addSearchCondition('name_visible', $term);
+        	$tags = Tags::model()->findAll($criteria);
+
+        	$result=array();
+        	foreach ($tags as $tag) {
+        		$result=array($tag['name_visible']);
+        	}
+
+        	echo CJSON::encode($result);
+        	Yii::app()->end();
+			
+		}
 	}
 
 	/**
